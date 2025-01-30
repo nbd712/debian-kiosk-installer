@@ -4,8 +4,8 @@
 apt-get update
 
 # get software
-apt-get install \
-	unclutter \
+apt-get install --no-install-recommends \
+    unclutter \
     xorg \
     chromium \
     openbox \
@@ -31,7 +31,7 @@ if [ -e "/etc/X11/xorg.conf" ]; then
 fi
 cat > /etc/X11/xorg.conf << EOF
 Section "ServerFlags"
-    Option "DontVTSwitch" "true"
+    Option "DontVTSwitch" "false"
 EndSection
 EOF
 
@@ -41,7 +41,7 @@ if [ -e "/etc/lightdm/lightdm.conf" ]; then
 fi
 cat > /etc/lightdm/lightdm.conf << EOF
 [Seat:*]
-autologin-user=jos
+autologin-user=kiosk
 autologin-session=openbox
 EOF
 
@@ -58,6 +58,10 @@ while :
 do
   xrandr --auto
   chromium \
+    --disable-gpu \
+    --disable-software-rasterizer \
+    --disable-pinch \
+    --force-device-scale-factor=0.75  \
     --no-first-run \
     --start-maximized \
     --disable \
@@ -67,7 +71,7 @@ do
     --disable-save-password-bubble \
     --disable-session-crashed-bubble \
     --incognito \
-    --kiosk "https://neave.tv/"
+    --kiosk "https://google.com"
   sleep 5
 done &
 EOF
