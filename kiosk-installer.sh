@@ -52,6 +52,11 @@ fi
 cat > /home/kiosk/.config/openbox/autostart << EOF
 #!/bin/bash
 
+# Disable screen blanking and power management
+xset s off
+xset -dpms
+xset s noblank
+
 unclutter -idle 0.1 -grab -root &
 
 while :
