@@ -5,7 +5,6 @@ apt-get update
 
 # get software
 apt-get install --no-install-recommends \
-    unclutter \
     xorg \
     chromium \
     openbox \
@@ -57,26 +56,27 @@ xset s off
 xset -dpms
 xset s noblank
 
-unclutter -idle 0.1 -grab -root &
-
 while :
 do
   xrandr --auto
-  chromium \
-    --disable-gpu \
-    --disable-software-rasterizer \
-    --disable-pinch \
-    --force-device-scale-factor=0.75  \
-    --no-first-run \
-    --start-maximized \
-    --disable \
-    --disable-translate \
-    --disable-infobars \
-    --disable-suggestions-service \
-    --disable-save-password-bubble \
-    --disable-session-crashed-bubble \
-    --incognito \
-    --kiosk "https://google.com"
+  chromium  \
+  --disable-gpu \
+  --disable-software-rasterizer \
+  --disable-pinch \
+  --hide-scrollbars \
+  --force-show-cursor \
+  --force-device-scale-factor=1  \
+  --no-first-run \
+  --start-maximized \
+  --force-device-scale-factor=1 \
+  --disable \
+  --disable-translate \
+  --disable-infobars \
+  --disable-suggestions-service \
+  --disable-save-password-bubble \
+  --disable-session-crashed-bubble \
+  --incognito \
+  --kiosk "https://google.com"
   sleep 5
 done &
 EOF
